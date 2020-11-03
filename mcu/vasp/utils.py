@@ -70,7 +70,7 @@ def read_WAVEDER(file='WAVEDER'):
         print('Cannot find the %s file. Check the path:' % file)
         
     from scipy.io import FortranFile
-    file = FortranFile(waveder, 'r')
+    file = FortranFile(file, 'r')
     nb_tot, nbands_cder, nkpts, ispin = file.read_record(dtype= np.int32)
     nodesn_i_dielectric_function = file.read_record(dtype= np.float)
     wplasmon = file.read_record(dtype= np.float).reshape(3,3)
@@ -85,7 +85,7 @@ def read_WAVEDERF(file='WAVEDERF'):
     if not check_exist(file):
         print('Cannot find the %s file. Check the path:' % file)
         
-    file = open(wavederf, "r").readlines() 
+    file = open(file, "r").readlines() 
     ispin, nkpts, nbands_cder = np.int32(file[0].split())
     
     # the last index of cder for cdum_x,cdum_y,cdum_z
